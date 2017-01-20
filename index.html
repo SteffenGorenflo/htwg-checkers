@@ -6,6 +6,110 @@
 </head>
 <body>
 
+<script>
+    var wsUri = "ws://localhost:9000/socket";
+    var output;
 
+    // playfield infos
+    var field;
+    var currentplayer;
+    var possibleTargets;
+    var possibleMoves;
+    var possibleOrigins;
+
+
+    function init() {
+        output = document.getElementById("output");
+        testWebSocket();
+    }
+
+    function testWebSocket() {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function (evt) {
+            onOpen(evt);
+
+            // queries
+            websocket.send(JSON.stringify({query: "getcurrentplayer"}));
+            websocket.send(JSON.stringify({query: "gamestatus"}));
+            websocket.send(JSON.stringify({query: "getpossiblepieces"}));
+            websocket.send(JSON.stringify({query: "getmoves"}));
+            websocket.send(JSON.stringify({query: "getpossibletargets", x: 1, y: 1}));
+
+            // execute
+            websocket.send(JSON.stringify({execute: "quitgame"}));
+            websocket.send(JSON.stringify({execute: "newgame"}));
+            websocket.send(JSON.stringify({execute: "setpiece", x1: 1, y1: 1, x2: 2, y2: 2}));
+
+        };
+
+        websocket.onclose = function (evt) {
+            onClose(evt)
+        };
+
+        websocket.onmessage = function (evt) {
+            var data = JSON.parse(evt.data);
+
+            if (data.moves) {
+                possibleMoves = data.moves;
+            } else if (data.vector) {
+                field = data.vector;
+                update();
+            } else if (data.origins) {
+                possibleOrigins = data.origins;
+            } else if (data.targets) {
+                possibleTargets = data.targets;
+            } else if (data === 'Black' || data === 'White') {
+                currentplayer = data;
+            } else {
+                console.log("Got unkown message", data);
+            }
+
+        };
+
+        websocket.onerror = function (evt) {
+            onError(evt)
+        };
+
+
+    }
+
+    function update() {
+        console.log('Update playfield');
+    }
+
+    function onOpen(evt) {
+        writeToScreen("CONNECTED");
+        doSend("{\"query\":\"getcurrentplayer\"}");
+    }
+
+    function onClose(evt) {
+        console.log(evt);
+        writeToScreen("DISCONNECTED");
+    }
+
+    function onMessage(evt) {
+        writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
+    }
+
+    function onError(evt) {
+        writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+    }
+
+    function doSend(message) {
+        writeToScreen("SENT: " + message);
+        websocket.send(message);
+    }
+
+    function writeToScreen(message) {
+        var pre = document.createElement("p");
+        pre.style.wordWrap = "break-word";
+        pre.innerHTML = message;
+        output.appendChild(pre);
+    }
+
+    window.addEventListener("load", init, false);
+
+</script>
+<div id="output"></div>
 </body>
 </html>
