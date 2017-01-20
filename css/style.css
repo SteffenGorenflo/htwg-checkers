@@ -1,0 +1,53 @@
+.center {
+    margin: 0 auto;
+    display: table;
+    float: none;
+    background-color: transparent;
+}
+
+.field-container {
+    border-style: ridge;
+    border-width: 8px;
+    border-color: #2793e8;
+    width: 480px;
+    height: 480px;
+    box-shadow: 25px 25px 12px #888
+
+}
+
+#title {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 50px;
+    font-family: Arial;
+}
+.row {
+    height: 60px;
+    width: 480px;
+}
+
+.field {
+    width: 60px;
+    height: inherit;
+    float: left;
+}
+
+.uneven {
+    background-color: white;
+}
+
+.even {
+    background-color: black;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-repeat: no-repeat;
+    background: linear-gradient(red, orange, yellow, green, cyan, blue, magenta);
+    margin: 0;
+}
+

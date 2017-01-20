@@ -3,8 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <title>HTWG-Checkers</title>
+
+    <link href="css/style.css" rel="stylesheet" />
+
+
 </head>
 <body>
+
+<div id="title" class="center">HTWG Checkers</div>
+
+<div class="center field-container">
+    <div id="row1" class="row">
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+    </div>
+    <div id="row2" class="row">
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+    </div>
+    <div id="row3" class="row">
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+    </div>
+    <div id="row4" class="row">
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+    </div>
+    <div id="row5" class="row">
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+    </div>
+    <div id="row6" class="row">
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+    </div>
+    <div id="row7" class="row">
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+    </div>
+    <div id="row8" class="row">
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+    </div>
+</div>
 
 <script>
     var wsUri = "ws://localhost:9000/socket";
@@ -101,10 +190,10 @@
     }
 
     function writeToScreen(message) {
-        var pre = document.createElement("p");
-        pre.style.wordWrap = "break-word";
-        pre.innerHTML = message;
-        output.appendChild(pre);
+//        var pre = document.createElement("p");
+//        pre.style.wordWrap = "break-word";
+//        pre.innerHTML = message;
+//        output.appendChild(pre);
     }
 
     window.addEventListener("load", init, false);
