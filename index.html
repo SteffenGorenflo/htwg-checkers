@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>HTWG-Checkers</title>
 
-    <link href="css/style.css" rel="stylesheet" />
-
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -13,6 +13,16 @@
 <div id="title" class="center">HTWG Checkers</div>
 
 <div class="center field-container">
+    <div id="row0" class="row">
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+        <div class="field uneven"></div>
+        <div class="field even"></div>
+    </div>
     <div id="row1" class="row">
         <div class="field even"></div>
         <div class="field uneven"></div>
@@ -83,16 +93,6 @@
         <div class="field even"></div>
         <div class="field uneven"></div>
     </div>
-    <div id="row8" class="row">
-        <div class="field uneven"></div>
-        <div class="field even"></div>
-        <div class="field uneven"></div>
-        <div class="field even"></div>
-        <div class="field uneven"></div>
-        <div class="field even"></div>
-        <div class="field uneven"></div>
-        <div class="field even"></div>
-    </div>
 </div>
 
 <script>
@@ -100,43 +100,278 @@
     var output;
 
     // playfield infos
-    var field;
+    var field = [
+        {
+            "pos": {
+                "x": 0,
+                "y": 1
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 0,
+                "y": 5
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 0,
+                "y": 7
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 1,
+                "y": 0
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 1,
+                "y": 2
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 1,
+                "y": 6
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 2,
+                "y": 1
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 2,
+                "y": 5
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 2,
+                "y": 7
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 3,
+                "y": 0
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 3,
+                "y": 2
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 3,
+                "y": 6
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 4,
+                "y": 1
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 4,
+                "y": 5
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 4,
+                "y": 7
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 5,
+                "y": 0
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 5,
+                "y": 2
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 5,
+                "y": 6
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 6,
+                "y": 1
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 6,
+                "y": 5
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 6,
+                "y": 7
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 7,
+                "y": 0
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 7,
+                "y": 2
+            },
+            "piece": {
+                "colour": "Black",
+                "checkers": false
+            }
+        },
+        {
+            "pos": {
+                "x": 7,
+                "y": 6
+            },
+            "piece": {
+                "colour": "White",
+                "checkers": false
+            }
+        }
+    ];
     var currentplayer;
     var possibleTargets;
     var possibleMoves;
     var possibleOrigins;
 
+    var websocket;
 
-    function init() {
-        output = document.getElementById("output");
-        testWebSocket();
-    }
+    // websocket messages
+    // queries
+    //    websocket.send(JSON.stringify({query: "getcurrentplayer"}));
+    //    websocket.send(JSON.stringify({query: "gamestatus"}));
+    //    websocket.send(JSON.stringify({query: "getpossiblepieces"}));
+    //    websocket.send(JSON.stringify({query: "getmoves"}));
+    //    websocket.send(JSON.stringify({query: "getpossibletargets", x: 1, y: 1}));
+    //
+    //    // execute
+    //    websocket.send(JSON.stringify({execute: "quitgame"}));
+    //    websocket.send(JSON.stringify({execute: "newgame"}));
+    //    websocket.send(JSON.stringify({execute: "setpiece", x1: 1, y1: 1, x2: 2, y2: 2}));
 
-    function testWebSocket() {
-        websocket = new WebSocket(wsUri);
-        websocket.onopen = function (evt) {
-            onOpen(evt);
-
-            // queries
-            websocket.send(JSON.stringify({query: "getcurrentplayer"}));
-            websocket.send(JSON.stringify({query: "gamestatus"}));
-            websocket.send(JSON.stringify({query: "getpossiblepieces"}));
-            websocket.send(JSON.stringify({query: "getmoves"}));
-            websocket.send(JSON.stringify({query: "getpossibletargets", x: 1, y: 1}));
-
-            // execute
-            websocket.send(JSON.stringify({execute: "quitgame"}));
-            websocket.send(JSON.stringify({execute: "newgame"}));
-            websocket.send(JSON.stringify({execute: "setpiece", x1: 1, y1: 1, x2: 2, y2: 2}));
-
-        };
-
-        websocket.onclose = function (evt) {
-            onClose(evt)
-        };
-
-        websocket.onmessage = function (evt) {
-            var data = JSON.parse(evt.data);
+    var socketFunction = {
+        onOpen: mainFunction,
+        onError: function (event) {
+            console.error('Websocket Error', event);
+        },
+        onClose: function (event) {
+            console.log('Websockets closed', event)
+        },
+        onMessage: function (event) {
+            var data = JSON.parse(event.data);
 
             if (data.moves) {
                 possibleMoves = data.moves;
@@ -152,53 +387,50 @@
             } else {
                 console.log("Got unkown message", data);
             }
+        }
+    };
 
-        };
+    $(document).ready(function () {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = socketFunction.onOpen;
+        websocket.onclose = socketFunction.onClose;
+        websocket.onmessage = socketFunction.onMessage;
+        websocket.onerror = socketFunction.onError;
 
-        websocket.onerror = function (evt) {
-            onError(evt)
-        };
+    });
 
+    var mainFunction = function () {
 
-    }
+        // init playfield
+        update();
+
+        $('.field').on('click', function (e) {
+            console.log(e);
+            console.log($(this))
+        });
+
+        websocket.send(JSON.stringify({query: "gamestatus"}));
+    };
+
 
     function update() {
         console.log('Update playfield');
+        var i, pos, id, col, color;
+        for (i = 0; i < field.length; ++i) {
+            pos = field[i].pos;
+            id = '#row' + pos.y;
+            col = ' div:nth-child(' + (pos.x + 1) + ')';
+
+            color = field[i].piece.colour === 'Black' ? '<img src="images/BLACK.png">' : '<img src="images/WHITE.png">';
+            $(id + ' ' + col).append(color);
+
+            console.log(field[i])
+            console.log(i)
+        }
+
     }
 
-    function onOpen(evt) {
-        writeToScreen("CONNECTED");
-        doSend("{\"query\":\"getcurrentplayer\"}");
-    }
-
-    function onClose(evt) {
-        console.log(evt);
-        writeToScreen("DISCONNECTED");
-    }
-
-    function onMessage(evt) {
-        writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
-    }
-
-    function onError(evt) {
-        writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
-    }
-
-    function doSend(message) {
-        writeToScreen("SENT: " + message);
-        websocket.send(message);
-    }
-
-    function writeToScreen(message) {
-//        var pre = document.createElement("p");
-//        pre.style.wordWrap = "break-word";
-//        pre.innerHTML = message;
-//        output.appendChild(pre);
-    }
-
-    window.addEventListener("load", init, false);
 
 </script>
-<div id="output"></div>
 </body>
 </html>
