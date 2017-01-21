@@ -148,21 +148,17 @@
             var index = checkersIndex(elem);
 
             if (contains(index, possibleOrigins)) {
+                // mark piece
                 getPossibleTargets(index);
                 removeAllMarked();
                 elem.toggleClass('marked');
+                selected = index
+            } else if (contains(index, possibleTargets)) {
+                // move piece
+                movePiece(selected, index);
             }
 
-//
-//            var x = field.parent().attr('id');
-//            var y = field.index();
-//
-//            if (!selected) {
-//
-//            }
-//            console.log(e);
-//
-//            console.log()
+
         });
 
         $('.field').mouseenter(function () {
@@ -178,6 +174,8 @@
 
 
     function update() {
+        $('img').remove();
+        $('div').removeClass('marked');
         playfield.forEach(function (field) {
             $(jQueryIndex(field.pos.x, field.pos.y))
                 .append(field.piece.colour === 'Black' ? black : white);
@@ -252,6 +250,16 @@
         index.query = 'getpossibletargets';
         console.log(index);
         websocket.send(JSON.stringify(index));
+    };
+
+    var movePiece = function (from, to) {
+        var execute = {execute: "setpiece"};
+        execute.x1 = from.x;
+        execute.y1 = from.y;
+        execute.x2 = to.x;
+        execute.y2 = to.y;
+
+        websocket.send(JSON.stringify(execute));
     };
 
 
