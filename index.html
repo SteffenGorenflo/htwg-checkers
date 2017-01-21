@@ -10,10 +10,10 @@
 </head>
 <body>
 
-<div id="title" class="center">HTWG Checkers</div>
+<div id="title" class="center"></div>
 
 <div class="center field-container">
-    <div id="row0" class="row">
+    <div id="0" class="row">
         <div class="field uneven"></div>
         <div class="field even"></div>
         <div class="field uneven"></div>
@@ -23,7 +23,7 @@
         <div class="field uneven"></div>
         <div class="field even"></div>
     </div>
-    <div id="row1" class="row">
+    <div id="1" class="row">
         <div class="field even"></div>
         <div class="field uneven"></div>
         <div class="field even"></div>
@@ -33,7 +33,7 @@
         <div class="field even"></div>
         <div class="field uneven"></div>
     </div>
-    <div id="row2" class="row">
+    <div id="2" class="row">
         <div class="field uneven"></div>
         <div class="field even"></div>
         <div class="field uneven"></div>
@@ -43,7 +43,7 @@
         <div class="field uneven"></div>
         <div class="field even"></div>
     </div>
-    <div id="row3" class="row">
+    <div id="3" class="row">
         <div class="field even"></div>
         <div class="field uneven"></div>
         <div class="field even"></div>
@@ -53,7 +53,7 @@
         <div class="field even"></div>
         <div class="field uneven"></div>
     </div>
-    <div id="row4" class="row">
+    <div id="4" class="row">
         <div class="field uneven"></div>
         <div class="field even"></div>
         <div class="field uneven"></div>
@@ -63,7 +63,7 @@
         <div class="field uneven"></div>
         <div class="field even"></div>
     </div>
-    <div id="row5" class="row">
+    <div id="5" class="row">
         <div class="field even"></div>
         <div class="field uneven"></div>
         <div class="field even"></div>
@@ -73,7 +73,7 @@
         <div class="field even"></div>
         <div class="field uneven"></div>
     </div>
-    <div id="row6" class="row">
+    <div id="6" class="row">
         <div class="field uneven"></div>
         <div class="field even"></div>
         <div class="field uneven"></div>
@@ -83,7 +83,7 @@
         <div class="field uneven"></div>
         <div class="field even"></div>
     </div>
-    <div id="row7" class="row">
+    <div id="7" class="row">
         <div class="field even"></div>
         <div class="field uneven"></div>
         <div class="field even"></div>
@@ -100,252 +100,17 @@
     var output;
 
     // playfield infos
-    var field = [
-        {
-            "pos": {
-                "x": 0,
-                "y": 1
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 0,
-                "y": 5
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 0,
-                "y": 7
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 1,
-                "y": 0
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 1,
-                "y": 2
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 1,
-                "y": 6
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 2,
-                "y": 1
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 2,
-                "y": 5
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 2,
-                "y": 7
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 3,
-                "y": 0
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 3,
-                "y": 2
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 3,
-                "y": 6
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 4,
-                "y": 1
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 4,
-                "y": 5
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 4,
-                "y": 7
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 5,
-                "y": 0
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 5,
-                "y": 2
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 5,
-                "y": 6
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 6,
-                "y": 1
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 6,
-                "y": 5
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 6,
-                "y": 7
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 7,
-                "y": 0
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 7,
-                "y": 2
-            },
-            "piece": {
-                "colour": "Black",
-                "checkers": false
-            }
-        },
-        {
-            "pos": {
-                "x": 7,
-                "y": 6
-            },
-            "piece": {
-                "colour": "White",
-                "checkers": false
-            }
-        }
-    ];
+    var playfield = [];
     var currentplayer;
-    var possibleTargets;
+    var possibleTargets = [];
     var possibleMoves;
-    var possibleOrigins;
+    var possibleOrigins = [];
+    var selected;
+
+    // images
+    const black = '<img src="images/BLACK.png">';
+    const white = '<img src="images/WHITE.png">';
+
 
     var websocket;
 
@@ -353,7 +118,7 @@
     // queries
     //    websocket.send(JSON.stringify({query: "getcurrentplayer"}));
     //    websocket.send(JSON.stringify({query: "gamestatus"}));
-    //    websocket.send(JSON.stringify({query: "getpossiblepieces"}));
+    //
     //    websocket.send(JSON.stringify({query: "getmoves"}));
     //    websocket.send(JSON.stringify({query: "getpossibletargets", x: 1, y: 1}));
     //
@@ -361,6 +126,65 @@
     //    websocket.send(JSON.stringify({execute: "quitgame"}));
     //    websocket.send(JSON.stringify({execute: "newgame"}));
     //    websocket.send(JSON.stringify({execute: "setpiece", x1: 1, y1: 1, x2: 2, y2: 2}));
+
+
+    $(document).ready(function () {
+
+        // init websocket
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = socketFunction.onOpen;
+        websocket.onclose = socketFunction.onClose;
+        websocket.onmessage = socketFunction.onMessage;
+        websocket.onerror = socketFunction.onError;
+    });
+
+    var mainFunction = function () {
+
+        $('.field').on('click', function (e) {
+
+            // first get the coordinates
+            var field = $(this).css("background-color", "#88c400");
+            var x = field.parent().attr('id');
+            var y = field.index();
+            var query = {query: "getpossibletargets"};
+            query.x = parseInt(x);
+            query.y = y;
+            console.log(query);
+            websocket.send(JSON.stringify(query));
+            if (!selected) {
+
+            }
+            console.log(e);
+
+            console.log()
+        });
+
+        $('.field').mouseenter(function () {
+            var elem = $(this);
+            var index = checkersIndex(elem);
+            if (contains(index, possibleOrigins)) {
+                elem.addClass('highlight')
+            }
+        }).mouseleave(function () {
+            $(this).removeClass('highlight')
+        });
+    };
+
+
+    function update() {
+        playfield.forEach(function (field) {
+            $(jQueryIndex(field.pos.x, field.pos.y))
+                .append(field.piece.colour === 'Black' ? black : white);
+        });
+        websocket.send(JSON.stringify({query: "getpossiblepieces"}));
+    }
+
+    var displayPossibleTargets = function () {
+        possibleTargets.forEach(function (target) {
+            $(jQueryIndex(target.x, target.y))
+                .css("background-color", "#88c400");
+        })
+    };
 
     var socketFunction = {
         onOpen: mainFunction,
@@ -376,11 +200,14 @@
             if (data.moves) {
                 possibleMoves = data.moves;
             } else if (data.vector) {
-                field = data.vector;
+                playfield = data.vector;
                 update();
             } else if (data.origins) {
+                console.log('Got origins', data);
                 possibleOrigins = data.origins;
+                markOrigins();
             } else if (data.targets) {
+                console.log('Got Targets', data);
                 possibleTargets = data.targets;
             } else if (data === 'Black' || data === 'White') {
                 currentplayer = data;
@@ -390,46 +217,28 @@
         }
     };
 
-    $(document).ready(function () {
-        websocket = new WebSocket(wsUri);
-        websocket.onopen = socketFunction.onOpen;
-        websocket.onclose = socketFunction.onClose;
-        websocket.onmessage = socketFunction.onMessage;
-        websocket.onerror = socketFunction.onError;
-
-    });
-
-    var mainFunction = function () {
-
-        // init playfield
-        update();
-
-        $('.field').on('click', function (e) {
-            console.log(e);
-            console.log($(this))
-        });
-
-        websocket.send(JSON.stringify({query: "gamestatus"}));
+    var jQueryIndex = function (x, y) {
+        return '#' + x + ' div:nth-child(' + (y + 1) + ')'
     };
 
+    var markOrigins = function () {
+        possibleOrigins.forEach(function (field) {
+            $(jQueryIndex(field.x, field.y)).addClass('hovered')
+        });
+    };
 
-    function update() {
-        console.log('Update playfield');
-        var i, pos, id, col, color;
-        for (i = 0; i < field.length; ++i) {
-            pos = field[i].pos;
-            id = '#row' + pos.y;
-            col = ' div:nth-child(' + (pos.x + 1) + ')';
+    var checkersIndex = function (elem) {
+        var reval = {};
+        reval.x = parseInt(elem.parent().attr('id'));
+        reval.y = elem.index();
+        return reval;
+    };
 
-            color = field[i].piece.colour === 'Black' ? '<img src="images/BLACK.png">' : '<img src="images/WHITE.png">';
-            $(id + ' ' + col).append(color);
-
-            console.log(field[i])
-            console.log(i)
-        }
-
+    var contains = function (field, listOfFields) {
+        return listOfFields.some(function (elem) {
+            return (elem.x === field.x && elem.y === field.y);
+        })
     }
-
 
 </script>
 </body>

@@ -21,15 +21,20 @@
     font-size: 50px;
     font-family: Arial;
 }
+
 .row {
-    height: 60px;
-    width: 480px;
+    width: 60px;
+    height: 480px;
+    float: left;
 }
 
 .field {
-    width: 60px;
-    height: inherit;
-    float: left;
+    height: 60px;
+    width: inherit;
+}
+
+.highlight {
+    background-color: #88C400 !important;
 }
 
 .uneven {
