@@ -13,7 +13,7 @@
 <div id="title" class="center">HTWG
     <div class="subtitle">Checkers</div>
     <div class="button">
-        <button class='imgButton'>NEW GAME</button>
+        <button id="button" class='imgButton'>NEW GAME</button>
     </div>
 </div>
 
@@ -172,6 +172,10 @@
         }).mouseleave(function () {
             $(this).removeClass('highlight')
         });
+
+        $('#button').on('click', function () {
+            websocket.send(JSON.stringify({execute: "newgame"}));
+        })
     };
 
 
