@@ -148,18 +148,15 @@
             var index = checkersIndex(elem);
 
             if (contains(index, possibleOrigins)) {
-                removeAllMarked(index);
+                getPossibleTargets(index);
+                removeAllMarked();
                 elem.toggleClass('marked');
             }
 
 //
 //            var x = field.parent().attr('id');
 //            var y = field.index();
-//            var query = {query: "getpossibletargets"};
-//            query.x = parseInt(x);
-//            query.y = y;
-//            console.log(query);
-//            websocket.send(JSON.stringify(query));
+//
 //            if (!selected) {
 //
 //            }
@@ -188,12 +185,6 @@
         websocket.send(JSON.stringify({query: "getpossiblepieces"}));
     }
 
-    var displayPossibleTargets = function () {
-        possibleTargets.forEach(function (target) {
-            $(jQueryIndex(target.x, target.y))
-                .css("background-color", "#88c400");
-        })
-    };
 
     var socketFunction = {
         onOpen: mainFunction,
@@ -214,10 +205,11 @@
             } else if (data.origins) {
                 console.log('Got origins', data);
                 possibleOrigins = data.origins;
-                markOrigins();
             } else if (data.targets) {
                 console.log('Got Targets', data);
+                unmarkTargets();
                 possibleTargets = data.targets;
+                markTargets();
             } else if (data === 'Black' || data === 'White') {
                 currentplayer = data;
             } else {
@@ -230,11 +222,18 @@
         return '#' + x + ' div:nth-child(' + (y + 1) + ')'
     };
 
-    var markOrigins = function () {
-        possibleOrigins.forEach(function (field) {
-            $(jQueryIndex(field.x, field.y)).addClass('hovered')
+    var markTargets = function () {
+        possibleTargets.forEach(function (field) {
+            $(jQueryIndex(field.x, field.y)).addClass('marked')
         });
     };
+
+    var unmarkTargets = function () {
+        possibleTargets.forEach(function (field) {
+            $(jQueryIndex(field.x, field.y)).removeClass('marked')
+        });
+    };
+
 
     var checkersIndex = function (elem) {
         var reval = {};
@@ -245,10 +244,14 @@
 
     var removeAllMarked = function (field) {
         possibleOrigins.forEach(function (elem) {
-            if (field.x != elem.x && field.y != elem.y) {
-                $(jQueryIndex(elem.x, elem.y)).removeClass('marked')
-            }
+            $(jQueryIndex(elem.x, elem.y)).removeClass('marked');
         })
+    };
+
+    var getPossibleTargets = function (index) {
+        index.query = 'getpossibletargets';
+        console.log(index);
+        websocket.send(JSON.stringify(index));
     };
 
 
