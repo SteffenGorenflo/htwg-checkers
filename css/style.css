@@ -14,6 +14,12 @@
     margin-left: 20px;
 }
 
+.game-info {
+    margin-top: 40px;
+    margin-left: 40px;
+    font-size: 25px;
+}
+
 #title {
     margin-top: 60px;
     margin-bottom: 40px;
@@ -28,6 +34,7 @@
     margin-top: 30px;
     margin-left: 60px;
 }
+
 button {
     line-height: 50px;
     width: 200px;
@@ -39,10 +46,9 @@ button.imgButton {
     background-size: cover;
     border-radius: 20px;
     background: url("../images/button.png");
-    background-size:cover; /* <-- scale the image to cover the button */
-    background-position:center center; /* <-- center the image in the button */
+    background-size: cover; /* <-- scale the image to cover the button */
+    background-position: center center; /* <-- center the image in the button */
 }
-
 
 .subtitle {
     padding-left: 40px;
@@ -53,6 +59,7 @@ button.imgButton {
     letter-spacing: 3px;
     font-size: 60px;
 }
+
 .row {
     width: 60px;
     height: 480px;

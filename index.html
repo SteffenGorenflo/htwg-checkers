@@ -15,6 +15,8 @@
     <div class="button">
         <button id="button" class='imgButton'>NEW GAME</button>
     </div>
+    <div id="gameinfo" class="game-info">
+    </div>
 </div>
 
 <div class="center field-container">
@@ -216,6 +218,7 @@
                 markTargets();
             } else if (data === 'Black' || data === 'White') {
                 currentplayer = data;
+                displayCurrentPlayer();
             } else {
                 console.log("Got unkown message", data);
             }
@@ -272,6 +275,10 @@
         execute.y2 = to.y;
 
         websocket.send(JSON.stringify(execute));
+    };
+
+    var displayCurrentPlayer = function () {
+        $('#gameinfo').text("Current player: " + currentplayer)
     };
 
 
