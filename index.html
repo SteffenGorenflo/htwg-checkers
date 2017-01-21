@@ -97,13 +97,12 @@
 
 <script>
     var wsUri = "ws://localhost:9000/socket";
-    var output;
 
     // playfield infos
     var playfield = [];
     var currentplayer;
     var possibleTargets = [];
-    var possibleMoves;
+    var possibleMoves = [];
     var possibleOrigins = [];
     var selected;
 
@@ -117,10 +116,8 @@
     // websocket messages
     // queries
     //    websocket.send(JSON.stringify({query: "getcurrentplayer"}));
-    //    websocket.send(JSON.stringify({query: "gamestatus"}));
     //
     //    websocket.send(JSON.stringify({query: "getmoves"}));
-    //    websocket.send(JSON.stringify({query: "getpossibletargets", x: 1, y: 1}));
     //
     //    // execute
     //    websocket.send(JSON.stringify({execute: "quitgame"}));
@@ -180,7 +177,8 @@
             $(jQueryIndex(field.pos.x, field.pos.y))
                 .append(field.piece.colour === 'Black' ? black : white);
         });
-        websocket.send(JSON.stringify({query: "getpossiblepieces"}));
+        websocket.send(JSON.stringify({query: "getmoves"}));
+        websocket.send(JSON.stringify({query: "getcurrentplayer"}));
     }
 
 
@@ -197,14 +195,13 @@
 
             if (data.moves) {
                 possibleMoves = data.moves;
+                retrievePossibleOrigins();
             } else if (data.vector) {
                 playfield = data.vector;
                 update();
             } else if (data.origins) {
-                console.log('Got origins', data);
                 possibleOrigins = data.origins;
             } else if (data.targets) {
-                console.log('Got Targets', data);
                 unmarkTargets();
                 possibleTargets = data.targets;
                 markTargets();
@@ -240,15 +237,21 @@
         return reval;
     };
 
-    var removeAllMarked = function (field) {
+    var removeAllMarked = function () {
         possibleOrigins.forEach(function (elem) {
             $(jQueryIndex(elem.x, elem.y)).removeClass('marked');
         })
     };
 
+    var retrievePossibleOrigins = function () {
+        possibleOrigins = [];
+        possibleMoves.forEach(function (move) {
+            possibleOrigins.push(move.origin);
+        })
+    };
+
     var getPossibleTargets = function (index) {
         index.query = 'getpossibletargets';
-        console.log(index);
         websocket.send(JSON.stringify(index));
     };
 
