@@ -1,27 +1,38 @@
 .center {
     margin: 0 auto;
     display: table;
-    float: none;
+    float: left;
     background-color: transparent;
 }
 
 .field-container {
-    border-style: ridge;
-    border-width: 8px;
-    border-color: #2793e8;
+    border: 8px ridge #2793e8;
     width: 480px;
     height: 480px;
-    box-shadow: 25px 25px 12px #888
-
+    box-shadow: 25px 25px 12px #888;
+    margin-top: 60px;
+    margin-left: 20px;
 }
 
 #title {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    margin-left: 20px;
     font-size: 50px;
     font-family: Arial;
+    font-weight: bold;
+    width: 30%
 }
 
+.subtitle {
+    padding-left: 40px;
+    padding-top: 10px;
+    font-style: oblique;
+    font-family: AppleGothic;
+    color: saddlebrown;
+    letter-spacing: 3px;
+    font-size: 60px;
+}
 .row {
     width: 60px;
     height: 480px;
