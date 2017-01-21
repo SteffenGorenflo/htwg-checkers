@@ -140,23 +140,32 @@
 
     var mainFunction = function () {
 
-        $('.field').on('click', function (e) {
+        $('.field').on('click', function (event) {
+
 
             // first get the coordinates
-            var field = $(this).css("background-color", "#88c400");
-            var x = field.parent().attr('id');
-            var y = field.index();
-            var query = {query: "getpossibletargets"};
-            query.x = parseInt(x);
-            query.y = y;
-            console.log(query);
-            websocket.send(JSON.stringify(query));
-            if (!selected) {
+            var elem = $(this);
+            var index = checkersIndex(elem);
 
+            if (contains(index, possibleOrigins)) {
+                removeAllMarked(index);
+                elem.toggleClass('marked');
             }
-            console.log(e);
 
-            console.log()
+//
+//            var x = field.parent().attr('id');
+//            var y = field.index();
+//            var query = {query: "getpossibletargets"};
+//            query.x = parseInt(x);
+//            query.y = y;
+//            console.log(query);
+//            websocket.send(JSON.stringify(query));
+//            if (!selected) {
+//
+//            }
+//            console.log(e);
+//
+//            console.log()
         });
 
         $('.field').mouseenter(function () {
@@ -233,6 +242,15 @@
         reval.y = elem.index();
         return reval;
     };
+
+    var removeAllMarked = function (field) {
+        possibleOrigins.forEach(function (elem) {
+            if (field.x != elem.x && field.y != elem.y) {
+                $(jQueryIndex(elem.x, elem.y)).removeClass('marked')
+            }
+        })
+    };
+
 
     var contains = function (field, listOfFields) {
         return listOfFields.some(function (elem) {
